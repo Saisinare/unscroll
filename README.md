@@ -98,3 +98,11 @@ Built with Kotlin, Jetpack Compose and Material 3.
 - **App updates can break detection:** it relies on the internal view IDs of other apps. When a detection stops working, `block/Signatures.kt` is the one place to update.
 - **English works best:** tamper protection, the Facebook and Snapchat feed checks and the song filter match English text, so they may miss screens in other languages or on heavily customised phones.
 - **Song detection is a best guess:** it looks for phrases like "official video" or "lyrics", so it can miss some songs and catch some videos that aren't songs.
+
+## Contributing
+
+Contributions are welcome, especially fixes for detections broken by app updates. Please read the [contributing guide](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md) first. To report a vulnerability, see the [security policy](SECURITY.md).
+
+## License
+
+Unscroll is released under the [MIT License](LICENSE).
