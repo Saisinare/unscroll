@@ -1,0 +1,4 @@
+<resources>
+    <style name="Theme.Unscroll" parent="android:Theme.Material.Light.NoActionBar" />
+    <color name="ic_launcher_background">#0F6E5A</color>
+</resources>

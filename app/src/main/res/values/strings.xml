@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Unscroll</string>
+    <string name="accessibility_description">Unscroll uses this service to see which app or website is on screen so it can block apps, Reels, Shorts, blocked websites and YouTube topics you chose. Nothing leaves your phone.</string>
+    <string name="admin_description">Keeps Unscroll from being uninstalled while protection is on.</string>
+</resources>
