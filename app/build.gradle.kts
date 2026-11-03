@@ -1,9 +1,15 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization")
 }
+
+// Release key details live in keystore.properties, which is never committed. See keystore.properties.example.
+val keystoreProps = rootProject.file("keystore.properties").takeIf { it.exists() }
+    ?.let { file -> Properties().apply { file.inputStream().use { load(it) } } }
 
 android {
     namespace = "com.unscroll"
@@ -17,13 +23,24 @@ android {
         versionName = "0.1.0"
     }
 
+    signingConfigs {
+        if (keystoreProps != null) {
+            create("release") {
+                storeFile = rootProject.file(keystoreProps.getProperty("storeFile"))
+                storePassword = keystoreProps.getProperty("storePassword")
+                keyAlias = keystoreProps.getProperty("keyAlias")
+                keyPassword = keystoreProps.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            // Debug key so the optimized build installs directly; swap for a real release key before publishing.
-            signingConfig = signingConfigs.getByName("debug")
+            // Unsigned without keystore.properties, so a debug-signed build can't be published by mistake.
+            signingConfig = signingConfigs.findByName("release")
         }
     }
     compileOptions {

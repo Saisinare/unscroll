@@ -68,7 +68,7 @@ Then open Unscroll and follow the setup card on the **Today** tab.
 
 If the accessibility switch is greyed out, go to **App info → ⋮ → Allow restricted settings**, then try again. Android does this for apps installed outside an app store.
 
-The `release` build is signed with the debug key so that it installs directly. Swap in a real release key before publishing it anywhere.
+`./gradlew assembleRelease` makes an optimized build. It's unsigned unless you add your own key: copy `keystore.properties.example` to `keystore.properties` and fill it in.
 
 ## How it works
 
