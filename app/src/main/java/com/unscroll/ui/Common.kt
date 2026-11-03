@@ -38,9 +38,9 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -170,9 +170,10 @@ private val missingIcons = ConcurrentHashMap.newKeySet<String>()
 fun AppIcon(pkg: String, size: Dp = 44.dp, fallback: Color = palette.cardAlt, glyph: String = "•") {
     val context = LocalContext.current
     // Icons decode off the main thread and are cached, so scrolling long app lists stays smooth.
-    val bitmap by produceState(iconCache.get(pkg), pkg) {
-        if (value == null && pkg !in missingIcons) {
-            value = withContext(Dispatchers.IO) {
+    var bitmap by remember(pkg) { mutableStateOf<ImageBitmap?>(iconCache.get(pkg)) }
+    LaunchedEffect(pkg) {
+        if (bitmap == null && pkg !in missingIcons) {
+            bitmap = withContext(Dispatchers.IO) {
                 runCatching { context.packageManager.getApplicationIcon(pkg).toBitmap(128, 128).asImageBitmap() }
                     .onFailure { missingIcons.add(pkg) }
                     .getOrNull()

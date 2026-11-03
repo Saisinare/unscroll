@@ -48,14 +48,12 @@ Add new IDs alongside the old ones, because people may still be on older version
 1. Fork the repo and create a branch from `main`.
 2. Set up the project using the [getting started steps](README.md#getting-started).
 3. Make your change. Keep it focused on one thing.
-4. Make sure the app still builds, then run lint:
+4. Make sure the app still builds and lint passes:
 
    ```bash
    ./gradlew assembleDebug
    ./gradlew lint
    ```
-
-   Lint currently fails on two existing errors, in `ui/Common.kt` and `block/BlockActivity.kt`. You don't need to fix those, but please don't add new ones. Fixes for them are welcome as a separate pull request.
 
 5. Test on a real phone or emulator. The project has no automated tests yet, so this is the main check. If you add decision logic to `block/Rules.kt`, unit tests are very welcome.
 6. Open a pull request.

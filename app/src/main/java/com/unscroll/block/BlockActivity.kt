@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.unscroll.data.BlockStats
 import com.unscroll.ui.PillButton
 import com.unscroll.ui.Tag
@@ -45,6 +46,7 @@ class BlockActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         reason = intent.getStringExtra(EXTRA_REASON).orEmpty()
         setContent {
+            val blocked by BlockStats.today.collectAsStateWithLifecycle()
             UnscrollTheme {
                 Column(
                     Modifier.fillMaxSize().background(palette.bg).systemBarsPadding().padding(24.dp),
@@ -63,7 +65,7 @@ class BlockActivity : ComponentActivity() {
                         Spacer(Modifier.height(10.dp))
                         Text(reason, style = MaterialTheme.typography.bodyLarge, color = palette.muted, textAlign = TextAlign.Center)
                         Spacer(Modifier.height(20.dp))
-                        Tag("${BlockStats.today.value} blocks today", palette.mint, palette.ink)
+                        Tag("$blocked blocks today", palette.mint, palette.ink)
                     }
                     PillButton("Back to calm", ::finish, Modifier.fillMaxWidth())
                 }
