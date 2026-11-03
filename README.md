@@ -53,9 +53,17 @@ An accessibility service can read what's on your screen, which is why the lack o
 
 ## Getting started
 
-There are no prebuilt downloads yet, so you'll need to build the app yourself.
+### Install the app
 
-**Requirements:** Android 8.0 (API 26) or newer, plus the Android SDK (API 35) and JDK 17.
+Download `app-release.apk` from the [latest release](https://github.com/Saisinare/unscroll/releases/latest) and open it on your phone. It needs Android 8.0 or newer.
+
+Then open Unscroll and follow the setup card on the **Today** tab.
+
+If the accessibility switch is greyed out, go to **App info → ⋮ → Allow restricted settings**, then try again. Android does this for apps installed outside an app store.
+
+### Build from source
+
+You'll need the Android SDK (API 35) and JDK 17.
 
 ```bash
 git clone https://github.com/Saisinare/unscroll.git
@@ -63,10 +71,6 @@ cd unscroll
 ./gradlew assembleDebug
 adb install app/build/outputs/apk/debug/app-debug.apk
 ```
-
-Then open Unscroll and follow the setup card on the **Today** tab.
-
-If the accessibility switch is greyed out, go to **App info → ⋮ → Allow restricted settings**, then try again. Android does this for apps installed outside an app store.
 
 `./gradlew assembleRelease` makes an optimized build. It's unsigned unless you add your own key: copy `keystore.properties.example` to `keystore.properties` and fill it in.
 
