@@ -6,6 +6,10 @@ Unscroll blocks the parts of your phone that are built to keep you scrolling, li
 
 It runs entirely on your phone. There's no account, and the app doesn't have internet permission, so what it sees on your screen can't be sent anywhere.
 
+## Video
+
+[Watch the Unscroll video](docs/media/unscroll-demo.mp4)
+
 ## Features
 
 ### Short-form video
