@@ -43,6 +43,12 @@ Look for the `resource-id` values in `window.xml`. **This file contains whatever
 
 Add new IDs alongside the old ones, because people may still be on older versions of the app.
 
+The default dump filename, `window.xml`, is ignored by Git to help prevent accidental uploads. If you rename a dump, keep it outside the repository. Delete the local copy and the copy on your phone when you're finished:
+
+```bash
+adb shell rm /sdcard/window.xml
+```
+
 ## Making a change
 
 1. Fork the repo and create a branch from `main`.

@@ -11,3 +11,6 @@
 /captures/
 .externalNativeBuild/
 .cxx/
+
+# UI hierarchy dumps can contain private on-screen content.
+window.xml
